@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerraQuest - Explore the World</title>
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div id="start-screen" class="screen active">
+            <div class="start-container">
+                <div class="logo">
+                    <h1>TerraQuest</h1>
+                    <p class="tagline">Explore the world, one guess at a time</p>
+                </div>
+                <div class="instructions">
+                    <h2>How to Play</h2>
+                    <ul>
+                        <li>🗺️ Explore the Street View location</li>
+                        <li>📍 Drop your pin on the world map</li>
+                        <li>🎯 See how close you are to the actual location</li>
+                        <li>🏆 Earn points based on accuracy</li>
+                    </ul>
+                </div>
+                <button id="start-game-btn" class="start-btn">Start Game</button>
+            </div>
+        </div>
+        <div id="game-screen" class="screen">
+            <div class="top-bar">
+                <div class="compass">
+                    <div class="compass-needle" id="compass-needle"></div>
+                    <span class="compass-text">N</span>
+                </div>
+                <div class="timer-container">
+                    <div class="timer" id="timer">2:00</div>
+                </div>
+                <div class="round-info">
+                    <span id="round-counter">Round 1/5</span>
+                    <span id="total-score">Score: 0</span>
+                </div>
+            </div>
+            <div id="street-view" class="street-view"></div>
+            <div class="guess-map-container">
+                <div id="guess-map" class="guess-map"></div>
+                <button id="submit-guess-btn" class="submit-btn" disabled>Submit Guess</button>
+            </div>
+            <div id="loading-overlay" class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <p>Finding a new location...</p>
+            </div>
+        </div>
+        <div id="results-screen" class="screen">
+            <div class="results-container">
+                <h1>🎉 Game Complete!</h1>
+                <div class="final-score">
+                    <span class="score-label">Final Score</span>
+                    <span id="final-score" class="score-value">0</span>
+                    <span class="score-max">/ 25,000</span>
+                </div>
+                <div id="round-breakdown" class="round-breakdown"></div>
+                <div class="results-actions">
+                    <button id="play-again-btn" class="play-again-btn">Play Again</button>
+                </div>
+            </div>
+        </div>
+        <div id="round-result-modal" class="modal-overlay">
+            <div class="modal">
+                <h2>Round Result</h2>
+                <div class="result-stats">
+                    <div class="stat">
+                        <span class="stat-label">Distance</span>
+                        <span id="round-distance" class="stat-value">0 km</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Points</span>
+                        <span id="round-points" class="stat-value">0</span>
+                    </div>
+                </div>
+                <div id="result-map" class="result-map"></div>
+                <button id="next-round-btn" class="next-round-btn">Next Round</button>
+            </div>
+        </div>
+    </div>
+    <script src="src/js/config.js"></script>
+    <script src="src/js/utils.js"></script>
+    <script src="src/js/game.js"></script>
+    <script src="src/js/streetview.js"></script>
+    <script src="src/js/maps.js"></script>
+    <script src="src/js/scoring.js"></script>
+    <script src="src/js/ui.js"></script>
+    <script src="src/js/main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={YOUR_CLOUD_CONSOLE_API_KEY}&libraries=geometry&callback=initGame"></script>
+</body>
+</html>
